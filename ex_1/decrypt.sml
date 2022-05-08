@@ -3,9 +3,8 @@ local
         let
             fun next_String input = (TextIO.inputAll input) 
             val stream = TextIO.openIn file
-            val a = next_String stream
         in
-            explode(a)
+            explode(next_String stream)
         end
 
     fun rotate (n, []) = []
@@ -47,8 +46,8 @@ local
 
                 val freq = frequency msg
                 val count = #1(freq)
-                val arr = #2(freq)
-                val _ = Array.modify (divide count) arr 
+                val freq = #2(freq)
+                val _ = Array.modify (divide count) freq 
 
                 fun mul arr [] i = arr
                     | mul arr (x::f) i = 
@@ -58,7 +57,7 @@ local
                             mul arr f (i+1)
                         end
 
-                val h_n = mul arr f 0
+                val h_n = mul freq f 0
             in
                 ~(Array.foldl op+ 0.0 h_n)
             end
@@ -79,7 +78,7 @@ in
                 end
 
             val N = #1(min_N msg 1)
-            val decrypted = rotate(N, msg)
+            val msg = rotate(N, msg)
 
             fun print_arr [] = print "\n"
                 | print_arr (c::msg) = 
@@ -89,6 +88,6 @@ in
                         print_arr msg
                     end
         in
-            print_arr decrypted
+            print_arr msg
         end
 end

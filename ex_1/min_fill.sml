@@ -73,9 +73,9 @@ local
 in
     fun min_fill file = 
         let 
-            val input = parse file
-            val N = #1(input)
-            val map = mergesort(#2(input))
+            val map = parse file
+            val N = #1(map)
+            val map = mergesort(#2(map))
             val parent =
                 let
                     fun incr x = x + 1;
