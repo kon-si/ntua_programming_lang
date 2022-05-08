@@ -80,7 +80,7 @@ in
                 let
                     fun incr x = x + 1;
                 in
-                    Array.tabulate (N, incr)
+                    Array.tabulate(N, incr)
                 end 
         in
             (ds.mst parent map; print (Int.toString(!L) ^ "\n"))
