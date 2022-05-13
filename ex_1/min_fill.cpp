@@ -67,8 +67,7 @@ struct graph {
  
             if (ds->find(u) != ds->find(v)) {
             	ds->merge(u, v);
-                if (w > L)
-		    		L = w;
+		    	L = w;
             }
         }
 		delete(ds);
