@@ -37,10 +37,10 @@ local
                                 end
                             else if ascii > 64 andalso ascii < 91 then
                                 let
-                                        val _ =  Array.update(f_n, (ascii-65), (Array.sub(f_n, ascii-65)+1.0))
-                                    in
-                                        (#1(frequency msg)+1.0, f_n)
-                                    end
+                                    val _ =  Array.update(f_n, (ascii-65), (Array.sub(f_n, ascii-65)+1.0))
+                                in
+                                    (#1(frequency msg)+1.0, f_n)
+                                end
                             else (#1(frequency msg), f_n)
                         end
 
@@ -66,7 +66,7 @@ in
         let
             val msg = parse file
 
-            fun min_N msg 26 = (26, 1000.0)
+            fun min_N msg 26 = (26, 10000.0)
                 | min_N msg i =
                 let
                     val decrypted = rotate (i, msg)
@@ -83,7 +83,11 @@ in
             fun print_arr [] = print "\n"
                 | print_arr (c::msg) = 
                     let 
-                        val _ = if c = #"\n" then print"\n" else print (Char.toString c)
+                        val _ = 
+                            if c = #"\n" then print "\n"
+                            else if c = #"\"" then print "\""
+                            else if c = #"\\" then print "\\"
+                            else print (Char.toString c)
                     in
                         print_arr msg
                     end
